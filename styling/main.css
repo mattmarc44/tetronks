@@ -1,0 +1,20 @@
+h1 {
+    color: blue;
+}
+
+.grid {
+    width: 200px;
+    height: 400px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tile {
+    width: 20px;
+    height: 20px;
+    background-color: brown;
+}
+
+.tetrominoe {
+    background-color: darkblue;
+}
