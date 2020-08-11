@@ -78,7 +78,21 @@ $(document).ready(function () {
         });
     };
 
+    //undraw
+    function undraw() {
+        current.forEach(index => {
+            squares[currentPosition + index].classList.remove('tetrominoe');
+        });
+    }
 
-    draw()
+    // make the tetrominoe move down at interval
+    timerId = setInterval(moveDown, 1000);
+    function moveDown() {
+        //this function undraws the first piece then redraws it after adding width to the currentPosition var ie. from 4 to 12 to 24
+        undraw();
+        currentPosition += width;
+        draw();
+    }
+    
     console.log(grid, squares);
 });
