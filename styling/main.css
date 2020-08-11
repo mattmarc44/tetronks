@@ -1,20 +1,17 @@
 h1 {
-    color: blue;
-}
+  color: blue; }
 
 .grid {
-    width: 200px;
-    height: 400px;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.tile {
+  width: 200px;
+  height: 400px;
+  display: flex;
+  flex-wrap: wrap; }
+  .grid .tile {
     width: 20px;
     height: 20px;
-    background-color: brown;
-}
+    background-color: brown; }
 
 .tetrominoe {
-    background-color: darkblue;
-}
+  background-color: darkblue; }
+
+/*# sourceMappingURL=main.css.map */
