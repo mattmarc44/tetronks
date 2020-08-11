@@ -44,9 +44,9 @@ $(document).ready(function () {
         [0,width, width+1, width+2]
     ];
     const sTetrominoe = [
-        [width*2, width*2+1, width+1, width+2],
-        [0,width,width+1,width*2+1],
         [2,1,width+1,width],
+        [0,width,width+1,width*2+1],
+        [width*2, width*2+1, width+1, width+2],
         [1,width+1,width+2,width*2+2]
     ];
     const tTetrominoe = [
@@ -64,8 +64,12 @@ $(document).ready(function () {
     ];
     const theTetrominoes = [lTetrominoe, sTetrominoe, tTetrominoe, iTetrominoe, oTetrominoe];
 
+    //randomly select first tetrominoe
+    let random = Math.floor(Math.random()*theTetrominoes.length);
+    //with our current width of our tetris game 4 makes the piece spawn in the centre as it is 0-9 wide.
     let currentPosition = 4;
-    let current = theTetrominoes[0][0];
+    //by setting the second selector to 0 we ensure whenever a tetrominoe spawns it starts in its first position.
+    let current = theTetrominoes[random][0];
 
     //draw in the first rotation in the first tetromino
     function draw() {
@@ -73,6 +77,7 @@ $(document).ready(function () {
             squares[currentPosition + index].classList.add('tetrominoe');
         });
     };
+
 
     draw()
     console.log(grid, squares);
