@@ -99,6 +99,15 @@ $(document).ready(function () {
         //37 is the keycode for the left on the d-pad.
         if(e.keyCode === 37) {
             moveLeft();
+        }
+        else if(e.keyCode === 38) {
+            //rotate();
+        }
+        else if(e.keyCode === 39) {
+            moveRight();
+        }
+        else if(e.keyCode === 40) {
+            moveDown();
         };
     };
     document.addEventListener('keydown', control);
@@ -138,6 +147,17 @@ $(document).ready(function () {
         if(current.some(index => squares[currentPosition + index].classList.contains('taken'))) {
             //this counteracts the above if the x axis left contains a taken space. Giving the impression its not moved.
             currentPosition += 1;
+        };
+        draw();
+    };
+
+    function moveRight() {
+        undraw();
+        //this time it's width minus one equaling 9,19,29etc thus the right edge.
+        const isAtRightEdge = current.some(index => (currentPosition + index) % width === width-1);
+        if(!isAtRightEdge) currentPosition += 1;
+        if(current.some(index => squares[currentPosition + index].classList.contains('taken'))) {
+            currentPosition -= 1;
         };
         draw();
     };
