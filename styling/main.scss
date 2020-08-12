@@ -7,10 +7,13 @@ h1 {
     height: 400px;
     display: flex;
     flex-wrap: wrap;
-    .tile {
+    div {
         width: 20px;
         height: 20px;
         background-color: brown;
+    }
+    .taken {
+        height: 0;
     }
     .tetrominoe {
         background-color: darkblue;

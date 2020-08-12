@@ -6,10 +6,12 @@ h1 {
   height: 400px;
   display: flex;
   flex-wrap: wrap; }
-  .grid .tile {
+  .grid div {
     width: 20px;
     height: 20px;
     background-color: brown; }
+  .grid .taken {
+    height: 0; }
   .grid .tetrominoe {
     background-color: darkblue; }
 
