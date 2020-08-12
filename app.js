@@ -93,6 +93,16 @@ $(document).ready(function () {
 
     // make the tetrominoe move down at interval
     timerId = setInterval(moveDown, 300);
+
+    //assign functions to keycodes
+    function control(e) {
+        //37 is the keycode for the left on the d-pad.
+        if(e.keyCode === 37) {
+            moveLeft();
+        };
+    };
+    document.addEventListener('keydown', control);
+
     function moveDown() {
         //this function undraws the first piece then redraws it after adding width to the currentPosition var ie. from 4 to 12 to 24
         undraw();
@@ -112,5 +122,23 @@ $(document).ready(function () {
             currentPosition = 4;
             draw();
         };
+    };
+
+    //move tetrominoes
+    function moveLeft() {
+        undraw();
+        //we can determine if a piece is at the edge by examining each indices of the piece relative to its current position is
+        //divisible by 0. This implies it is in the left edge ie. 0,10,20,30 etc, This would have to change if you wanted a 
+        //diferent playarea.
+        const isAtLeftEdge = current.some(index => (currentPosition + index) % width === 0);
+
+        //if it returns false, adjust its position -1 to give it its new x axis.
+        if(!isAtLeftEdge) currentPosition -=1 ;
+
+        if(current.some(index => squares[currentPosition + index].classList.contains('taken'))) {
+            //this counteracts the above if the x axis left contains a taken space. Giving the impression its not moved.
+            currentPosition += 1;
+        };
+        draw();
     };
 });
