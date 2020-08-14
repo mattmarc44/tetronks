@@ -23,6 +23,7 @@ $(document).ready(function () {
     const scoreDisplay = $('#score');
     const startBtn = $('#start');
     let nextRandom = 0;
+    let timerId;
 
 
     //the tetrominoes
@@ -103,8 +104,6 @@ $(document).ready(function () {
         });
     };
 
-    // make the tetrominoe move down at interval
-    timerId = setInterval(moveDown, 300);
 
     //assign functions to keycodes
     function control(e) {
@@ -200,7 +199,7 @@ $(document).ready(function () {
         [displayWidth, 1, displayWidth + 1, displayWidth + 2],//t
         [1, displayWidth + 1, displayWidth * 2 + 1],//i
         [0, 1, displayWidth, displayWidth + 1]//o
-    ]
+    ];
 
     //display shape in the mini-grid
     function displayShape() {
@@ -212,4 +211,19 @@ $(document).ready(function () {
             displaySquares[displayIndex + index].classList.add('tetrominoe');
         });
     }
+
+    //start/pause button
+    startBtn.click( function() {
+        if(timerId) {
+            //if timerId has a value when button clicked pause game
+            clearInterval(timerId);
+            timerId = null;
+        } else {
+            //start everything up again
+            draw();
+            timerId = setInterval(moveDown, 300);
+            nextRandom = Math.floor(Math.random()*theTetrominoes.length);
+            displayShape();
+        }
+    });
 });
