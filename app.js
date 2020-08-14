@@ -62,9 +62,14 @@ $(document).ready(function () {
     ];
     const iTetrominoe = [
         [1, width + 1, width * 2 + 1],
+        [width, width + 1, width + 2],
+        [1, width + 1, width * 2 + 1],
         [width, width + 1, width + 2]
     ];
     const oTetrominoe = [
+        [0, 1, width, width + 1],
+        [0, 1, width, width + 1],
+        [0, 1, width, width + 1],
         [0, 1, width, width + 1]
     ];
     const theTetrominoes = [lTetrominoe, sTetrominoe, tTetrominoe, iTetrominoe, oTetrominoe];
@@ -101,7 +106,7 @@ $(document).ready(function () {
             moveLeft();
         }
         else if(e.keyCode === 38) {
-            //rotate();
+            rotate();
         }
         else if(e.keyCode === 39) {
             moveRight();
@@ -161,4 +166,15 @@ $(document).ready(function () {
         };
         draw();
     };
+
+    function rotate() {
+        undraw();
+        currentRotation++;
+        if(currentRotation === current.length) {
+            //loops rotation back to the beginning instead of trying to access tetrominoe variations that don't exist.
+            currentRotation = 0;
+        }
+        current = theTetrominoes[random][currentRotation];
+        draw();
+    }
 });

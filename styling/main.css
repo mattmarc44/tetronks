@@ -1,6 +1,3 @@
-h1 {
-  color: blue; }
-
 .grid {
   width: 200px;
   height: 400px;
@@ -9,10 +6,24 @@ h1 {
   .grid div {
     width: 20px;
     height: 20px;
-    background-color: brown; }
+    background-color: #912323; }
   .grid .taken {
     height: 0; }
   .grid .tetrominoe {
-    background-color: darkblue; }
+    background-color: #04048b; }
+
+.mini-grid {
+  margin-left: 20px;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #912323; }
+
+h1 {
+  color: #1f1ff1; }
+
+.container {
+  display: flex; }
 
 /*# sourceMappingURL=main.css.map */

@@ -1,21 +1,20 @@
+//base partials
+@import './partials/variables';
+//@import './partials/mixins';
+
+///layout partials
+@import './partials/grid';
+@import './partials/miniGrid';
+
+
+//modules partials to be
+
+//
+
 h1 {
-    color: blue;
+    color: $mainCo;
 }
 
-.grid {
-    width: 200px;
-    height: 400px;
+.container {
     display: flex;
-    flex-wrap: wrap;
-    div {
-        width: 20px;
-        height: 20px;
-        background-color: brown;
-    }
-    .taken {
-        height: 0;
-    }
-    .tetrominoe {
-        background-color: darkblue;
-    }
 }
