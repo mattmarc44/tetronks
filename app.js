@@ -145,6 +145,7 @@ $(document).ready(function () {
             draw();
             displayShape();
             addScore();
+            gameOver();
         };
     };
 
@@ -248,6 +249,14 @@ $(document).ready(function () {
                 squares = squaresRemoved.concat(squares);
                 squares.forEach(cell => grid.append(cell));
             }
+        }
+    }
+
+    //gameover
+    function gameOver() {
+        if(current.some(index => squares[currentPosition + index].classList.contains('taken'))) {
+            scoreDisplay.text(' game over! ' + score);
+            clearInterval(timerId);
         }
     }
 });
