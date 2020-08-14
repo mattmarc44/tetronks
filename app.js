@@ -49,6 +49,12 @@ $(document).ready(function () {
         [1, width + 1, width * 2 + 1, width * 2],
         [0, width, width + 1, width + 2]
     ];
+    const otherLTetrominoe = [
+        [1, width + 1, width * 2 + 1, width * 2 + 2],
+        [width, width + 1, width +2, width*2],
+        [0,1,width+1,width*2+1],
+        [width,width+1,width+2,2]
+    ]
     const sTetrominoe = [
         [2, 1, width + 1, width],
         [0, width, width + 1, width * 2 + 1],
@@ -73,7 +79,7 @@ $(document).ready(function () {
         [0, 1, width, width + 1],
         [0, 1, width, width + 1]
     ];
-    const theTetrominoes = [lTetrominoe, sTetrominoe, tTetrominoe, iTetrominoe, oTetrominoe];
+    const theTetrominoes = [lTetrominoe, otherLTetrominoe, sTetrominoe, tTetrominoe, iTetrominoe, oTetrominoe];
 
     //randomly select first tetrominoe
     let random = Math.floor(Math.random() * theTetrominoes.length);
@@ -173,7 +179,7 @@ $(document).ready(function () {
     function rotate() {
         undraw();
         currentRotation++;
-        if(currentRotation === current.length) {
+        if(currentRotation === 4) {
             //loops rotation back to the beginning instead of trying to access tetrominoe variations that don't exist.
             currentRotation = 0;
         }
@@ -188,8 +194,8 @@ $(document).ready(function () {
     let displayIndex = 0;
     //the tetrominoes with no rotation
     const upNextTetrominoes = [
-        //remember to add opposite l tetrominoe
         [1, displayWidth + 1, displayWidth * 2 + 1, 2],//ltetro
+        [1, displayWidth + 1, displayWidth * 2 + 1, displayWidth * 2 + 2],//otherLtetro
         [2, 1, displayWidth + 1, displayWidth],//stetro
         [displayWidth, 1, displayWidth + 1, displayWidth + 2],//t
         [1, displayWidth + 1, displayWidth * 2 + 1],//i
