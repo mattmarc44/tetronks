@@ -5,4 +5,12 @@
     display: flex;
     flex-wrap: wrap;
     background-color: $secCo;
+    div {
+        width: 20px;
+        height: 20px;
+        background-color: $secCo;
+    }
+    .tetrominoe {
+        background-color: $tetroCo;
+    }
 }

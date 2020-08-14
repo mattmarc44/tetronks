@@ -22,6 +22,7 @@ $(document).ready(function () {
 
     const scoreDisplay = $('#score');
     const startBtn = $('#start');
+    let nextRandom = 0;
 
 
     //the tetrominoes
@@ -131,10 +132,12 @@ $(document).ready(function () {
         if (current.some(index => squares[currentPosition + index + width].classList.contains('taken'))) {
             current.forEach(index => squares[currentPosition + index].classList.add('taken'));
             //start a new tetrominoe by starting the process over again
-            random = Math.floor(Math.random() * theTetrominoes.length);
+            random = nextRandom;
+            nextRandom = Math.floor(Math.random() * theTetrominoes.length);
             current = theTetrominoes[random][currentRotation];
             currentPosition = 4;
             draw();
+            displayShape();
         };
     };
 
@@ -176,5 +179,31 @@ $(document).ready(function () {
         }
         current = theTetrominoes[random][currentRotation];
         draw();
+    }
+
+
+    //showing what tetrominoe is up next
+    const displaySquares = document.querySelectorAll('.mini-grid div');
+    const displayWidth = 4;
+    let displayIndex = 0;
+    //the tetrominoes with no rotation
+    const upNextTetrominoes = [
+        //remember to add opposite l tetrominoe
+        [1, displayWidth + 1, displayWidth * 2 + 1, 2],//ltetro
+        [2, 1, displayWidth + 1, displayWidth],//stetro
+        [displayWidth, 1, displayWidth + 1, displayWidth + 2],//t
+        [1, displayWidth + 1, displayWidth * 2 + 1],//i
+        [0, 1, displayWidth, displayWidth + 1]//o
+    ]
+
+    //display shape in the mini-grid
+    function displayShape() {
+        //remove any trace of a tetrominoe from the entire grid
+        displaySquares.forEach(square => {
+            square.classList.remove('tetrominoe');
+        });
+        upNextTetrominoes[nextRandom].forEach(index => {
+            displaySquares[displayIndex + index].classList.add('tetrominoe');
+        });
     }
 });

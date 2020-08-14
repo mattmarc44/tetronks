@@ -19,6 +19,12 @@
   display: flex;
   flex-wrap: wrap;
   background-color: #912323; }
+  .mini-grid div {
+    width: 20px;
+    height: 20px;
+    background-color: #912323; }
+  .mini-grid .tetrominoe {
+    background-color: #04048b; }
 
 h1 {
   color: #1f1ff1; }
