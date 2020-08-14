@@ -20,6 +20,7 @@ $(document).ready(function () {
     const grid = $('.grid:first');
     let squares = Array.from($('.grid div'));
 
+    let score = 0;
     const scoreDisplay = $('#score');
     const startBtn = $('#start');
     let nextRandom = 0;
@@ -143,6 +144,7 @@ $(document).ready(function () {
             currentPosition = 4;
             draw();
             displayShape();
+            addScore();
         };
     };
 
@@ -226,4 +228,26 @@ $(document).ready(function () {
             displayShape();
         }
     });
+
+    function addScore() {
+        for(let i=0; i<199; i+=width) {
+            //loop through every row and check each tile
+            const row = [i,i+1,i+2,i+3,i+4,i+5,i+6,i+7,i+8,i+9];
+            //if they all have a taken class then the player has completed a row and desereves some points.
+            if(row.every(index => squares[index].classList.contains('taken'))) {
+                score += 10;
+                console.log(score);
+                scoreDisplay.text(score);
+                row.forEach(index => {
+                    squares[index].classList.remove('taken');
+                    squares[index].classList.remove('tetrominoe');
+                });
+                //because we're doing this with an array as our playarea we're taking as many completed rows off the end
+                //and adding them to the beginning as were. Thus, giving the impression that a row was removed.
+                const squaresRemoved = squares.splice(i, width);
+                squares = squaresRemoved.concat(squares);
+                squares.forEach(cell => grid.append(cell));
+            }
+        }
+    }
 });
