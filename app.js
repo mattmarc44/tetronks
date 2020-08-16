@@ -25,6 +25,8 @@ $(document).ready(function () {
     const startBtn = $('#start');
     let nextRandom = 0;
     let timerId;
+    let speed = 800;
+    let level = 1;
 
 
     //the tetrominoes
@@ -153,7 +155,7 @@ $(document).ready(function () {
     function moveLeft() {
         undraw();
         //we can determine if a piece is at the edge by examining each indices of the piece relative to its current position is
-        //divisible by 0. This implies it is in the left edge ie. 0,10,20,30 etc, This would have to change if you wanted a 
+        //divisible by 10. This implies it is in the left edge ie. 0,10,20,30 etc, This would have to change if you wanted a 
         //diferent playarea.
         const isAtLeftEdge = current.some(index => (currentPosition + index) % width === 0);
 
@@ -237,7 +239,6 @@ $(document).ready(function () {
             //if they all have a taken class then the player has completed a row and desereves some points.
             if(row.every(index => squares[index].classList.contains('taken'))) {
                 score += 10;
-                console.log(score);
                 scoreDisplay.text(score);
                 row.forEach(index => {
                     squares[index].classList.remove('taken');
@@ -248,6 +249,7 @@ $(document).ready(function () {
                 const squaresRemoved = squares.splice(i, width);
                 squares = squaresRemoved.concat(squares);
                 squares.forEach(cell => grid.append(cell));
+                levelUp(score);
             }
         }
     }
@@ -257,6 +259,19 @@ $(document).ready(function () {
         if(current.some(index => squares[currentPosition + index].classList.contains('taken'))) {
             scoreDisplay.text(' game over! ' + score);
             clearInterval(timerId);
+        }
+    }
+
+    //level increment
+    function levelUp(x) {
+        if(speed === 100) {
+            $('#level').text('max level keep going!');
+        }else if (x%10 === 0) {
+            speed -= 50;
+            level++;
+            $('#level').text(level);
+            clearInterval(timerId);
+            timerId = setInterval(moveDown, speed);
         }
     }
 });
